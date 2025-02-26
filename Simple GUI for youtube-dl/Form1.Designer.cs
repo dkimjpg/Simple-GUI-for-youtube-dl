@@ -28,24 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            richTextBox1 = new RichTextBox();
+            linkInputText = new RichTextBox();
             argumentsGroup = new GroupBox();
             Link = new Label();
+            downloadButton = new Button();
+            consoleText = new RichTextBox();
+            consoleLabel = new Label();
             argumentsGroup.SuspendLayout();
             SuspendLayout();
             // 
-            // richTextBox1
+            // linkInputText
             // 
-            richTextBox1.Location = new Point(77, 26);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(325, 55);
-            richTextBox1.TabIndex = 0;
-            richTextBox1.Text = "";
+            linkInputText.Location = new Point(77, 26);
+            linkInputText.Name = "linkInputText";
+            linkInputText.Size = new Size(325, 55);
+            linkInputText.TabIndex = 0;
+            linkInputText.Text = "";
             // 
             // argumentsGroup
             // 
             argumentsGroup.Controls.Add(Link);
-            argumentsGroup.Controls.Add(richTextBox1);
+            argumentsGroup.Controls.Add(linkInputText);
             argumentsGroup.Location = new Point(12, 12);
             argumentsGroup.Name = "argumentsGroup";
             argumentsGroup.Size = new Size(526, 240);
@@ -62,23 +65,57 @@
             Link.TabIndex = 1;
             Link.Text = "Link";
             // 
+            // downloadButton
+            // 
+            downloadButton.Location = new Point(835, 45);
+            downloadButton.Name = "downloadButton";
+            downloadButton.Size = new Size(94, 29);
+            downloadButton.TabIndex = 3;
+            downloadButton.Text = "Download";
+            downloadButton.UseVisualStyleBackColor = true;
+            downloadButton.Click += downloadButton_Click;
+            // 
+            // consoleText
+            // 
+            consoleText.Location = new Point(89, 333);
+            consoleText.Name = "consoleText";
+            consoleText.Size = new Size(427, 120);
+            consoleText.TabIndex = 4;
+            consoleText.Text = "";
+            // 
+            // consoleLabel
+            // 
+            consoleLabel.AutoSize = true;
+            consoleLabel.Location = new Point(12, 372);
+            consoleLabel.Name = "consoleLabel";
+            consoleLabel.Size = new Size(62, 20);
+            consoleLabel.TabIndex = 5;
+            consoleLabel.Text = "Console";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(982, 653);
+            Controls.Add(consoleLabel);
+            Controls.Add(consoleText);
+            Controls.Add(downloadButton);
             Controls.Add(argumentsGroup);
             Name = "Form1";
             Text = "Simple GUI for youtube-dl";
             argumentsGroup.ResumeLayout(false);
             argumentsGroup.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private RichTextBox richTextBox1;
+        private RichTextBox linkInputText;
         private GroupBox argumentsGroup;
         private Label Link;
+        private Button downloadButton;
+        private RichTextBox consoleText;
+        private Label consoleLabel;
     }
 }
