@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Simple GUI for youtube-dl": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\z3roh\\source\\repos\\Simple GUI for youtube-dl\\Simple GUI for youtube-dl"
+    }
+  }
+}

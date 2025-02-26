@@ -41,7 +41,7 @@
             // 
             linkInputText.Location = new Point(77, 26);
             linkInputText.Name = "linkInputText";
-            linkInputText.Size = new Size(325, 55);
+            linkInputText.Size = new Size(427, 55);
             linkInputText.TabIndex = 0;
             linkInputText.Text = "";
             // 
@@ -79,7 +79,7 @@
             // 
             consoleText.Location = new Point(89, 333);
             consoleText.Name = "consoleText";
-            consoleText.Size = new Size(427, 120);
+            consoleText.Size = new Size(427, 262);
             consoleText.TabIndex = 4;
             consoleText.Text = "";
             // 
