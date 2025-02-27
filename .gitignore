@@ -364,3 +364,7 @@ FodyWeavers.xsd
 
 ffmpeg.exe
 youtube-dl.exe
+
+*.mp4
+*.mkv
+*.webm

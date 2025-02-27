@@ -13,7 +13,17 @@ namespace Simple_GUI_for_youtube_dl
 
         private void downloadButton_Click(object sender, EventArgs e)
         {
-            string command = ".\\youtube-dl " + linkInputText.Text;
+            string command;
+            if (formatBox.Text == "best")
+            {
+                command = ".\\youtube-dl " + linkInputText.Text;
+            }
+            else
+            {
+                command = ".\\youtube-dl " + "-f " + formatBox.Text + " " + linkInputText.Text;
+            }
+                
+            consoleText.AppendText("Downloading...\n");
             ExecutePowerShellCommand(command);
         }
 
