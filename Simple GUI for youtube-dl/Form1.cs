@@ -22,7 +22,7 @@ namespace Simple_GUI_for_youtube_dl
             {
                 command = ".\\youtube-dl " + "-f " + formatBox.Text + " " + linkInputText.Text;
             }
-                
+
             consoleText.AppendText("Downloading...\n");
             ExecutePowerShellCommand(command);
         }
