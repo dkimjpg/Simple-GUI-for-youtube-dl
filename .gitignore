@@ -368,3 +368,4 @@ youtube-dl.exe
 *.mp4
 *.mkv
 *.webm
+ignore/
