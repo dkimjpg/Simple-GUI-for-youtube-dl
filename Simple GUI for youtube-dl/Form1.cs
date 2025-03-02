@@ -14,16 +14,16 @@ namespace Simple_GUI_for_youtube_dl
         private void downloadButton_Click(object sender, EventArgs e)
         {
             string command = ".\\youtube-dl ";
-            if (formatBox.Text != "best" || qualityBox1.Text != "best")
+            if (formatBox.Text != "best" || qualityBox.Text != "best")
             {
                 command += "-f ";
                 if (formatBox.Text != "best")
                 {
                     command += formatBox.Text + " ";
                 }
-                if (qualityBox1.Text != "best")
+                if (qualityBox.Text != "best")
                 {
-                    command += qualityBox1.Text + " ";
+                    command += qualityBox.Text + " ";
                 }
             }
             

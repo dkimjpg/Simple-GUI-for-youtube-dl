@@ -30,20 +30,21 @@
         {
             linkInputText = new RichTextBox();
             argumentsGroup = new GroupBox();
-            qualityBox1 = new ComboBox();
+            qualityBox = new ComboBox();
             qualityLabel = new Label();
             formatBox = new ComboBox();
             formatLabel = new Label();
             Link = new Label();
             downloadButton = new Button();
             consoleText = new RichTextBox();
-            consoleLabel = new Label();
-            menuStrip1 = new MenuStrip();
-            fileToolStripMenuItem = new ToolStripMenuItem();
-            editToolStripMenuItem = new ToolStripMenuItem();
-            viewToolStripMenuItem = new ToolStripMenuItem();
+            tabControl1 = new TabControl();
+            menuTab = new TabPage();
+            addLinkButton = new Button();
+            consoleTab = new TabPage();
             argumentsGroup.SuspendLayout();
-            menuStrip1.SuspendLayout();
+            tabControl1.SuspendLayout();
+            menuTab.SuspendLayout();
+            consoleTab.SuspendLayout();
             SuspendLayout();
             // 
             // linkInputText
@@ -56,31 +57,33 @@
             // 
             // argumentsGroup
             // 
-            argumentsGroup.Controls.Add(qualityBox1);
+            argumentsGroup.Controls.Add(qualityBox);
             argumentsGroup.Controls.Add(qualityLabel);
             argumentsGroup.Controls.Add(formatBox);
             argumentsGroup.Controls.Add(formatLabel);
             argumentsGroup.Controls.Add(Link);
             argumentsGroup.Controls.Add(linkInputText);
-            argumentsGroup.Location = new Point(12, 69);
+            argumentsGroup.Location = new Point(6, 6);
             argumentsGroup.Name = "argumentsGroup";
-            argumentsGroup.Size = new Size(526, 240);
+            argumentsGroup.Size = new Size(526, 147);
             argumentsGroup.TabIndex = 2;
             argumentsGroup.TabStop = false;
             argumentsGroup.Text = "Arguments";
             // 
-            // qualityBox1
+            // qualityBox
             // 
-            qualityBox1.FormattingEnabled = true;
-            qualityBox1.Location = new Point(77, 162);
-            qualityBox1.Name = "qualityBox1";
-            qualityBox1.Size = new Size(151, 28);
-            qualityBox1.TabIndex = 9;
+            qualityBox.FormattingEnabled = true;
+            qualityBox.Items.AddRange(new object[] { "best" });
+            qualityBox.Location = new Point(353, 99);
+            qualityBox.Name = "qualityBox";
+            qualityBox.Size = new Size(151, 28);
+            qualityBox.TabIndex = 9;
+            qualityBox.Text = "best";
             // 
             // qualityLabel
             // 
             qualityLabel.AutoSize = true;
-            qualityLabel.Location = new Point(6, 162);
+            qualityLabel.Location = new Point(291, 102);
             qualityLabel.Name = "qualityLabel";
             qualityLabel.Size = new Size(56, 20);
             qualityLabel.TabIndex = 8;
@@ -95,6 +98,7 @@
             formatBox.Name = "formatBox";
             formatBox.Size = new Size(151, 28);
             formatBox.TabIndex = 6;
+            formatBox.Text = "best";
             // 
             // formatLabel
             // 
@@ -116,7 +120,7 @@
             // 
             // downloadButton
             // 
-            downloadButton.Location = new Point(835, 102);
+            downloadButton.Location = new Point(818, 99);
             downloadButton.Name = "downloadButton";
             downloadButton.Size = new Size(94, 29);
             downloadButton.TabIndex = 3;
@@ -126,68 +130,68 @@
             // 
             // consoleText
             // 
-            consoleText.Location = new Point(89, 333);
+            consoleText.Location = new Point(6, 6);
             consoleText.Name = "consoleText";
-            consoleText.Size = new Size(427, 262);
+            consoleText.Size = new Size(938, 584);
             consoleText.TabIndex = 4;
             consoleText.Text = "";
             // 
-            // consoleLabel
+            // tabControl1
             // 
-            consoleLabel.AutoSize = true;
-            consoleLabel.Location = new Point(12, 372);
-            consoleLabel.Name = "consoleLabel";
-            consoleLabel.Size = new Size(62, 20);
-            consoleLabel.TabIndex = 5;
-            consoleLabel.Text = "Console";
+            tabControl1.Controls.Add(menuTab);
+            tabControl1.Controls.Add(consoleTab);
+            tabControl1.Location = new Point(12, 12);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(958, 629);
+            tabControl1.TabIndex = 7;
             // 
-            // menuStrip1
+            // menuTab
             // 
-            menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, viewToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(982, 28);
-            menuStrip1.TabIndex = 6;
-            menuStrip1.Text = "menuStrip1";
+            menuTab.Controls.Add(addLinkButton);
+            menuTab.Controls.Add(downloadButton);
+            menuTab.Controls.Add(argumentsGroup);
+            menuTab.Location = new Point(4, 29);
+            menuTab.Name = "menuTab";
+            menuTab.Padding = new Padding(3);
+            menuTab.Size = new Size(950, 596);
+            menuTab.TabIndex = 0;
+            menuTab.Text = "Menu";
             // 
-            // fileToolStripMenuItem
+            // addLinkButton
             // 
-            fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(46, 24);
-            fileToolStripMenuItem.Text = "File";
+            addLinkButton.Location = new Point(818, 39);
+            addLinkButton.Name = "addLinkButton";
+            addLinkButton.Size = new Size(94, 29);
+            addLinkButton.TabIndex = 4;
+            addLinkButton.Text = "Add Link";
+            addLinkButton.UseVisualStyleBackColor = true;
             // 
-            // editToolStripMenuItem
+            // consoleTab
             // 
-            editToolStripMenuItem.Name = "editToolStripMenuItem";
-            editToolStripMenuItem.Size = new Size(49, 24);
-            editToolStripMenuItem.Text = "Edit";
-            // 
-            // viewToolStripMenuItem
-            // 
-            viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            viewToolStripMenuItem.Size = new Size(55, 24);
-            viewToolStripMenuItem.Text = "View";
+            consoleTab.Controls.Add(consoleText);
+            consoleTab.Location = new Point(4, 29);
+            consoleTab.Name = "consoleTab";
+            consoleTab.Padding = new Padding(3);
+            consoleTab.Size = new Size(950, 596);
+            consoleTab.TabIndex = 1;
+            consoleTab.Text = "Console";
+            consoleTab.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(982, 653);
-            Controls.Add(consoleLabel);
-            Controls.Add(consoleText);
-            Controls.Add(downloadButton);
-            Controls.Add(argumentsGroup);
-            Controls.Add(menuStrip1);
-            MainMenuStrip = menuStrip1;
+            Controls.Add(tabControl1);
             Name = "Form1";
             Text = "Simple GUI for youtube-dl";
             argumentsGroup.ResumeLayout(false);
             argumentsGroup.PerformLayout();
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
+            tabControl1.ResumeLayout(false);
+            menuTab.ResumeLayout(false);
+            consoleTab.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -200,11 +204,11 @@
         private Label consoleLabel;
         private ComboBox formatBox;
         private Label formatLabel;
-        private ComboBox qualityBox1;
+        private ComboBox qualityBox;
         private Label qualityLabel;
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem fileToolStripMenuItem;
-        private ToolStripMenuItem editToolStripMenuItem;
-        private ToolStripMenuItem viewToolStripMenuItem;
+        private TabControl tabControl1;
+        private TabPage consoleTab;
+        private TabPage menuTab;
+        private Button addLinkButton;
     }
 }
