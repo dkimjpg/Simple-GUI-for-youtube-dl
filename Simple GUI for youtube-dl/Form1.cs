@@ -19,7 +19,15 @@ namespace Simple_GUI_for_youtube_dl
                 command += "-f ";
                 if (formatBox.Text != "best")
                 {
-                    command += formatBox.Text + " ";
+                    //Check if format is audio
+                    if (formatBox.Text == "aac" || formatBox.Text == "m4a" || formatBox.Text == "ogg" || formatBox.Text == "wav")
+                    {
+                        command += "bestaudio[ext=" + formatBox.Text + "]/best ";
+                    }
+                    else //format is video
+                    {
+                        command += "bestvideo[ext="+ formatBox.Text + "]+bestaudio/best ";
+                    }
                 }
                 if (qualityBox.Text != "best")
                 {

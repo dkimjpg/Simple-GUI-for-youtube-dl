@@ -39,17 +39,17 @@
             consoleText = new RichTextBox();
             tabControl1 = new TabControl();
             menuTab = new TabPage();
-            videoListBox = new ListBox();
-            addLinkButton = new Button();
-            consoleTab = new TabPage();
             controlsGroup = new GroupBox();
+            addLinkButton = new Button();
             playlistGroup = new GroupBox();
+            videoListBox = new ListBox();
+            consoleTab = new TabPage();
             argumentsGroup.SuspendLayout();
             tabControl1.SuspendLayout();
             menuTab.SuspendLayout();
-            consoleTab.SuspendLayout();
             controlsGroup.SuspendLayout();
             playlistGroup.SuspendLayout();
+            consoleTab.SuspendLayout();
             SuspendLayout();
             // 
             // linkInputText
@@ -77,6 +77,7 @@
             // 
             // qualityBox
             // 
+            qualityBox.DropDownStyle = ComboBoxStyle.DropDownList;
             qualityBox.FormattingEnabled = true;
             qualityBox.Items.AddRange(new object[] { "best" });
             qualityBox.Location = new Point(353, 99);
@@ -161,36 +162,6 @@
             menuTab.TabIndex = 0;
             menuTab.Text = "Menu";
             // 
-            // videoListBox
-            // 
-            videoListBox.FormattingEnabled = true;
-            videoListBox.Location = new Point(14, 26);
-            videoListBox.Name = "videoListBox";
-            videoListBox.Size = new Size(912, 384);
-            videoListBox.TabIndex = 5;
-            videoListBox.SelectedIndexChanged += videoListBox_SelectedIndexChanged;
-            // 
-            // addLinkButton
-            // 
-            addLinkButton.Location = new Point(18, 31);
-            addLinkButton.Name = "addLinkButton";
-            addLinkButton.Size = new Size(94, 29);
-            addLinkButton.TabIndex = 4;
-            addLinkButton.Text = "Add Link";
-            addLinkButton.UseVisualStyleBackColor = true;
-            addLinkButton.Click += addLinkButton_Click;
-            // 
-            // consoleTab
-            // 
-            consoleTab.Controls.Add(consoleText);
-            consoleTab.Location = new Point(4, 29);
-            consoleTab.Name = "consoleTab";
-            consoleTab.Padding = new Padding(3);
-            consoleTab.Size = new Size(950, 596);
-            consoleTab.TabIndex = 1;
-            consoleTab.Text = "Console";
-            consoleTab.UseVisualStyleBackColor = true;
-            // 
             // controlsGroup
             // 
             controlsGroup.Controls.Add(addLinkButton);
@@ -202,6 +173,16 @@
             controlsGroup.TabStop = false;
             controlsGroup.Text = "Controls";
             // 
+            // addLinkButton
+            // 
+            addLinkButton.Location = new Point(18, 31);
+            addLinkButton.Name = "addLinkButton";
+            addLinkButton.Size = new Size(94, 29);
+            addLinkButton.TabIndex = 4;
+            addLinkButton.Text = "Add Link";
+            addLinkButton.UseVisualStyleBackColor = true;
+            addLinkButton.Click += addLinkButton_Click;
+            // 
             // playlistGroup
             // 
             playlistGroup.Controls.Add(videoListBox);
@@ -211,6 +192,26 @@
             playlistGroup.TabIndex = 7;
             playlistGroup.TabStop = false;
             playlistGroup.Text = "Playlist";
+            // 
+            // videoListBox
+            // 
+            videoListBox.FormattingEnabled = true;
+            videoListBox.Location = new Point(14, 26);
+            videoListBox.Name = "videoListBox";
+            videoListBox.Size = new Size(912, 384);
+            videoListBox.TabIndex = 5;
+            videoListBox.SelectedIndexChanged += videoListBox_SelectedIndexChanged;
+            // 
+            // consoleTab
+            // 
+            consoleTab.Controls.Add(consoleText);
+            consoleTab.Location = new Point(4, 29);
+            consoleTab.Name = "consoleTab";
+            consoleTab.Padding = new Padding(3);
+            consoleTab.Size = new Size(950, 596);
+            consoleTab.TabIndex = 1;
+            consoleTab.Text = "Console";
+            consoleTab.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -224,9 +225,9 @@
             argumentsGroup.PerformLayout();
             tabControl1.ResumeLayout(false);
             menuTab.ResumeLayout(false);
-            consoleTab.ResumeLayout(false);
             controlsGroup.ResumeLayout(false);
             playlistGroup.ResumeLayout(false);
+            consoleTab.ResumeLayout(false);
             ResumeLayout(false);
         }
 
