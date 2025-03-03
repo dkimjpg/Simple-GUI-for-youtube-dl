@@ -26,9 +26,9 @@ namespace Simple_GUI_for_youtube_dl
                     command += qualityBox.Text + " ";
                 }
             }
-            
+
             command += linkInputText.Text;
-            
+
 
             consoleText.AppendText("Downloading...\n");
             ExecutePowerShellCommand(command);
@@ -62,6 +62,30 @@ namespace Simple_GUI_for_youtube_dl
             catch (Exception ex)
             {
                 consoleText.AppendText($"Exception: {ex.Message}\r\n");
+            }
+        }
+
+        private void addLinkButton_Click(object sender, EventArgs e)
+        {
+            videoListBox.Items.Add(linkInputText.Text);
+        }
+
+        private void videoListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (videoListBox.SelectedItem != null)
+            {
+                string selectedItem = videoListBox.SelectedItem.ToString();
+
+                DialogResult askDeletion = MessageBox.Show(
+                    $"Do you want to delete '{selectedItem}'?",
+                    "Confirm Deletion",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (askDeletion == DialogResult.Yes)
+                {
+                    videoListBox.Items.RemoveAt(videoListBox.SelectedIndex);
+                }
             }
         }
     }

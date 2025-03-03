@@ -39,6 +39,7 @@
             consoleText = new RichTextBox();
             tabControl1 = new TabControl();
             menuTab = new TabPage();
+            videoListBox = new ListBox();
             addLinkButton = new Button();
             consoleTab = new TabPage();
             argumentsGroup.SuspendLayout();
@@ -78,7 +79,6 @@
             qualityBox.Name = "qualityBox";
             qualityBox.Size = new Size(151, 28);
             qualityBox.TabIndex = 9;
-            qualityBox.Text = "best";
             // 
             // qualityLabel
             // 
@@ -98,7 +98,6 @@
             formatBox.Name = "formatBox";
             formatBox.Size = new Size(151, 28);
             formatBox.TabIndex = 6;
-            formatBox.Text = "best";
             // 
             // formatLabel
             // 
@@ -148,6 +147,7 @@
             // 
             // menuTab
             // 
+            menuTab.Controls.Add(videoListBox);
             menuTab.Controls.Add(addLinkButton);
             menuTab.Controls.Add(downloadButton);
             menuTab.Controls.Add(argumentsGroup);
@@ -158,6 +158,15 @@
             menuTab.TabIndex = 0;
             menuTab.Text = "Menu";
             // 
+            // videoListBox
+            // 
+            videoListBox.FormattingEnabled = true;
+            videoListBox.Location = new Point(26, 185);
+            videoListBox.Name = "videoListBox";
+            videoListBox.Size = new Size(886, 384);
+            videoListBox.TabIndex = 5;
+            videoListBox.SelectedIndexChanged += videoListBox_SelectedIndexChanged;
+            // 
             // addLinkButton
             // 
             addLinkButton.Location = new Point(818, 39);
@@ -166,6 +175,7 @@
             addLinkButton.TabIndex = 4;
             addLinkButton.Text = "Add Link";
             addLinkButton.UseVisualStyleBackColor = true;
+            addLinkButton.Click += addLinkButton_Click;
             // 
             // consoleTab
             // 
@@ -210,5 +220,6 @@
         private TabPage consoleTab;
         private TabPage menuTab;
         private Button addLinkButton;
+        private ListBox videoListBox;
     }
 }
