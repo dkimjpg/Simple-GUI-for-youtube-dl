@@ -42,10 +42,14 @@
             videoListBox = new ListBox();
             addLinkButton = new Button();
             consoleTab = new TabPage();
+            controlsGroup = new GroupBox();
+            playlistGroup = new GroupBox();
             argumentsGroup.SuspendLayout();
             tabControl1.SuspendLayout();
             menuTab.SuspendLayout();
             consoleTab.SuspendLayout();
+            controlsGroup.SuspendLayout();
+            playlistGroup.SuspendLayout();
             SuspendLayout();
             // 
             // linkInputText
@@ -119,7 +123,7 @@
             // 
             // downloadButton
             // 
-            downloadButton.Location = new Point(818, 99);
+            downloadButton.Location = new Point(18, 91);
             downloadButton.Name = "downloadButton";
             downloadButton.Size = new Size(94, 29);
             downloadButton.TabIndex = 3;
@@ -147,10 +151,9 @@
             // 
             // menuTab
             // 
-            menuTab.Controls.Add(videoListBox);
-            menuTab.Controls.Add(addLinkButton);
-            menuTab.Controls.Add(downloadButton);
+            menuTab.Controls.Add(controlsGroup);
             menuTab.Controls.Add(argumentsGroup);
+            menuTab.Controls.Add(playlistGroup);
             menuTab.Location = new Point(4, 29);
             menuTab.Name = "menuTab";
             menuTab.Padding = new Padding(3);
@@ -161,15 +164,15 @@
             // videoListBox
             // 
             videoListBox.FormattingEnabled = true;
-            videoListBox.Location = new Point(26, 185);
+            videoListBox.Location = new Point(14, 26);
             videoListBox.Name = "videoListBox";
-            videoListBox.Size = new Size(886, 384);
+            videoListBox.Size = new Size(912, 384);
             videoListBox.TabIndex = 5;
             videoListBox.SelectedIndexChanged += videoListBox_SelectedIndexChanged;
             // 
             // addLinkButton
             // 
-            addLinkButton.Location = new Point(818, 39);
+            addLinkButton.Location = new Point(18, 31);
             addLinkButton.Name = "addLinkButton";
             addLinkButton.Size = new Size(94, 29);
             addLinkButton.TabIndex = 4;
@@ -188,6 +191,27 @@
             consoleTab.Text = "Console";
             consoleTab.UseVisualStyleBackColor = true;
             // 
+            // controlsGroup
+            // 
+            controlsGroup.Controls.Add(addLinkButton);
+            controlsGroup.Controls.Add(downloadButton);
+            controlsGroup.Location = new Point(814, 6);
+            controlsGroup.Name = "controlsGroup";
+            controlsGroup.Size = new Size(130, 145);
+            controlsGroup.TabIndex = 6;
+            controlsGroup.TabStop = false;
+            controlsGroup.Text = "Controls";
+            // 
+            // playlistGroup
+            // 
+            playlistGroup.Controls.Add(videoListBox);
+            playlistGroup.Location = new Point(6, 159);
+            playlistGroup.Name = "playlistGroup";
+            playlistGroup.Size = new Size(938, 431);
+            playlistGroup.TabIndex = 7;
+            playlistGroup.TabStop = false;
+            playlistGroup.Text = "Playlist";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -201,6 +225,8 @@
             tabControl1.ResumeLayout(false);
             menuTab.ResumeLayout(false);
             consoleTab.ResumeLayout(false);
+            controlsGroup.ResumeLayout(false);
+            playlistGroup.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -221,5 +247,7 @@
         private TabPage menuTab;
         private Button addLinkButton;
         private ListBox videoListBox;
+        private GroupBox controlsGroup;
+        private GroupBox playlistGroup;
     }
 }
