@@ -13,7 +13,24 @@ namespace Simple_GUI_for_youtube_dl
 
         private void downloadButton_Click(object sender, EventArgs e)
         {
+            if (videoListBox.Items != null)
+            {
+                foreach (var item in videoListBox.Items)
+                {
+                    //use this foreach instead of the linkInputText
+                    string link = item.ToString();
+                    Console.WriteLine("");
+                }
+            }
+            //else output an error popup window that says that no links have been added, click add link to add youtube links
+
+            
             string command = ".\\youtube-dl ";
+
+            //need to stop using formatBox.Text since I plan on using the listbox.
+            //change these two strings to use listbox or whatever I end up using later on.
+            string format = formatBox.Text;
+            string quality = qualityBox.Text;
             if (formatBox.Text != "best" || qualityBox.Text != "best")
             {
                 command += "-f ";
