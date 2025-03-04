@@ -11,88 +11,82 @@ namespace Simple_GUI_for_youtube_dl
             InitializeComponent();
         }
 
-        private void downloadButton_Click(object sender, EventArgs e)
+        private async void downloadButton_Click(object sender, EventArgs e)
         {
-            if (videoListBox.Items != null)
+            if (videoListBox.Items.Count == 0)
             {
-                foreach (var item in videoListBox.Items)
-                {
-                    //use this foreach instead of the linkInputText
-                    string link = item.ToString();
-
-                    string command = ".\\youtube-dl ";
-
-                    //need to stop using formatBox.Text since I plan on using the listbox.
-                    //change these two strings to use listbox or whatever I end up using later on.
-                    string format = formatBox.Text;
-                    //string format = link;
-                    string quality = qualityBox.Text;
-                    if (format != "best" || quality != "best")
-                    {
-                        command += "-f ";
-                        if (format != "best")
-                        {
-                            //Check if format is audio
-                            if (format == "aac" || format == "m4a" || format == "ogg" || format == "wav")
-                            {
-                                command += "bestaudio[ext=" + format + "]/best ";
-                            }
-                            else //format is video
-                            {
-                                command += "bestvideo[ext=" + format + "]+bestaudio/best ";
-                            }
-                        }
-                        if (quality != "best")
-                        {
-                            command += quality + " ";
-                        }
-                    }
-
-                    command += "\"" + link + "\"";
-
-
-                    consoleText.AppendText("Downloading...\n");
-                    consoleText.AppendText($"link: {link}\n");
-                    consoleText.AppendText($"{command}\n");
-                    ExecutePowerShellCommand(command);
-                }
-            }
-            //else output an error popup window that says that no links have been added, click add link to add youtube links
-
-            /*
-            string command = ".\\youtube-dl ";
-
-            //need to stop using formatBox.Text since I plan on using the listbox.
-            //change these two strings to use listbox or whatever I end up using later on.
-            string format = formatBox.Text;
-            string quality = qualityBox.Text;
-            if (format != "best" || quality != "best")
-            {
-                command += "-f ";
-                if (format != "best")
-                {
-                    //Check if format is audio
-                    if (format == "aac" || format == "m4a" || format == "ogg" || format == "wav")
-                    {
-                        command += "bestaudio[ext=" + format + "]/best ";
-                    }
-                    else //format is video
-                    {
-                        command += "bestvideo[ext=" + format + "]+bestaudio/best ";
-                    }
-                }
-                if (quality != "best")
-                {
-                    command += quality + " ";
-                }
+                MessageBox.Show("No links have been added. Please add YouTube links.",
+                    "No Links",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
             }
 
-            command += linkInputText.Text;
+            downloadButton.Enabled = false;
+
+            try
+            {
+                await Task.Run(() =>
+                {
+                    foreach (var item in videoListBox.Items)
+                    {
+                        //use this foreach instead of the linkInputText
+                        string link = item.ToString();
+
+                        string command = ".\\youtube-dl ";
+
+                        //need to stop using formatBox.Text since I plan on using the listbox.
+                        //change these two strings to use listbox or whatever I end up using later on.
+                        string format = formatBox.Text;
+                        //string format = link;
+                        string quality = qualityBox.Text;
+                        if (format != "best" || quality != "best")
+                        {
+                            command += "-f ";
+                            if (format != "best")
+                            {
+                                //Check if format is audio
+                                if (format == "aac" || format == "m4a" || format == "ogg" || format == "wav")
+                                {
+                                    command += "bestaudio[ext=" + format + "]/best ";
+                                }
+                                else //format is video
+                                {
+                                    command += "bestvideo[ext=" + format + "]+bestaudio/best ";
+                                }
+                            }
+                            if (quality != "best")
+                            {
+                                command += quality + " ";
+                            }
+                        }
+
+                        command += "\"" + link + "\"";
+
+                        BeginInvoke(new Action(() =>
+                        {
+                            consoleText.AppendText("Downloading...\n");
+                            consoleText.AppendText($"link: {link}\n");
+                            consoleText.AppendText($"{command}\n");
+                        }));
 
 
-            consoleText.AppendText("Downloading...\n");
-            ExecutePowerShellCommand(command);
-            */
+                        ExecutePowerShellCommand(command);
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}",
+                    "Download Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                downloadButton.Enabled = true;
+            }          
+            
         }
 
         private void ExecutePowerShellCommand(string command)
