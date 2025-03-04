@@ -19,36 +19,71 @@ namespace Simple_GUI_for_youtube_dl
                 {
                     //use this foreach instead of the linkInputText
                     string link = item.ToString();
-                    Console.WriteLine("");
+
+                    string command = ".\\youtube-dl ";
+
+                    //need to stop using formatBox.Text since I plan on using the listbox.
+                    //change these two strings to use listbox or whatever I end up using later on.
+                    string format = formatBox.Text;
+                    //string format = link;
+                    string quality = qualityBox.Text;
+                    if (format != "best" || quality != "best")
+                    {
+                        command += "-f ";
+                        if (format != "best")
+                        {
+                            //Check if format is audio
+                            if (format == "aac" || format == "m4a" || format == "ogg" || format == "wav")
+                            {
+                                command += "bestaudio[ext=" + format + "]/best ";
+                            }
+                            else //format is video
+                            {
+                                command += "bestvideo[ext=" + format + "]+bestaudio/best ";
+                            }
+                        }
+                        if (quality != "best")
+                        {
+                            command += quality + " ";
+                        }
+                    }
+
+                    command += "\"" + link + "\"";
+
+
+                    consoleText.AppendText("Downloading...\n");
+                    consoleText.AppendText($"link: {link}\n");
+                    consoleText.AppendText($"{command}\n");
+                    ExecutePowerShellCommand(command);
                 }
             }
             //else output an error popup window that says that no links have been added, click add link to add youtube links
 
-            
+            /*
             string command = ".\\youtube-dl ";
 
             //need to stop using formatBox.Text since I plan on using the listbox.
             //change these two strings to use listbox or whatever I end up using later on.
             string format = formatBox.Text;
             string quality = qualityBox.Text;
-            if (formatBox.Text != "best" || qualityBox.Text != "best")
+            if (format != "best" || quality != "best")
             {
                 command += "-f ";
-                if (formatBox.Text != "best")
+                if (format != "best")
                 {
                     //Check if format is audio
-                    if (formatBox.Text == "aac" || formatBox.Text == "m4a" || formatBox.Text == "ogg" || formatBox.Text == "wav")
+                    if (format == "aac" || format == "m4a" || format == "ogg" || format == "wav")
                     {
-                        command += "bestaudio[ext=" + formatBox.Text + "]/best ";
+                        command += "bestaudio[ext=" + format + "]/best ";
                     }
                     else //format is video
                     {
-                        command += "bestvideo[ext="+ formatBox.Text + "]+bestaudio/best ";
+                        command += "bestvideo[ext=" + format + "]+bestaudio/best ";
                     }
                 }
-                if (qualityBox.Text != "best")
+                if (quality != "best")
                 {
-                    command += qualityBox.Text + " ";
+                    command += quality + " ";
                 }
             }
 
@@ -57,6 +92,7 @@ namespace Simple_GUI_for_youtube_dl
 
             consoleText.AppendText("Downloading...\n");
             ExecutePowerShellCommand(command);
+            */
         }
 
         private void ExecutePowerShellCommand(string command)
