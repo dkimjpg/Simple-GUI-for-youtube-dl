@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Management.Automation;
+using System.Threading.Tasks;
 
 namespace Simple_GUI_for_youtube_dl
 {
@@ -35,10 +36,9 @@ namespace Simple_GUI_for_youtube_dl
 
                         string command = ".\\youtube-dl ";
 
-                        //need to stop using formatBox.Text since I plan on using the listbox.
+                        //need to stop using just formatBox.Text since I plan on using the listbox.
                         //change these two strings to use listbox or whatever I end up using later on.
                         string format = formatBox.Text;
-                        //string format = link;
                         string quality = qualityBox.Text;
                         if (format != "best" || quality != "best")
                         {
@@ -110,13 +110,19 @@ namespace Simple_GUI_for_youtube_dl
 
                     foreach (PSObject result in results)
                     {
-                        consoleText.AppendText($"{result.ToString()}\r\n");
+                        BeginInvoke(new Action(() =>
+                        {
+                            consoleText.AppendText($"{result.ToString()}\r\n");
+                        }));
                     }
                 }
             }
             catch (Exception ex)
             {
-                consoleText.AppendText($"Exception: {ex.Message}\r\n");
+                BeginInvoke(new Action(() =>
+                {
+                    consoleText.AppendText($"Exception: {ex.Message}\r\n");
+                }));
             }
         }
 
