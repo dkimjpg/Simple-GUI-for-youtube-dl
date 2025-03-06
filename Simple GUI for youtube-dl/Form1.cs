@@ -25,21 +25,30 @@ namespace Simple_GUI_for_youtube_dl
 
             downloadButton.Enabled = false;
 
+            string format = formatBox.Text;
+            string quality = qualityBox.Text;
+
+            var itemsToDownload = new List<string>();
+
+            foreach (var item in videoListBox.Items)
+            {
+                itemsToDownload.Add(item.ToString());
+            }
+
             try
             {
                 await Task.Run(() =>
                 {
-                    foreach (var item in videoListBox.Items)
+                    foreach (var link in itemsToDownload)
                     {
                         //use this foreach instead of the linkInputText
-                        string link = item.ToString();
+                        //string link = item.ToString();
 
                         string command = ".\\youtube-dl ";
 
                         //need to stop using just formatBox.Text since I plan on using the listbox.
                         //change these two strings to use listbox or whatever I end up using later on.
-                        string format = formatBox.Text;
-                        string quality = qualityBox.Text;
+                        
                         if (format != "best" || quality != "best")
                         {
                             command += "-f ";
