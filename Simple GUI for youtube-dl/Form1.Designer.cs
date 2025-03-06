@@ -30,6 +30,8 @@
         {
             linkInputText = new RichTextBox();
             argumentsGroup = new GroupBox();
+            pathInputText = new RichTextBox();
+            pathLabel = new Label();
             qualityBox = new ComboBox();
             qualityLabel = new Label();
             formatBox = new ComboBox();
@@ -62,6 +64,8 @@
             // 
             // argumentsGroup
             // 
+            argumentsGroup.Controls.Add(pathInputText);
+            argumentsGroup.Controls.Add(pathLabel);
             argumentsGroup.Controls.Add(qualityBox);
             argumentsGroup.Controls.Add(qualityLabel);
             argumentsGroup.Controls.Add(formatBox);
@@ -70,17 +74,34 @@
             argumentsGroup.Controls.Add(linkInputText);
             argumentsGroup.Location = new Point(6, 6);
             argumentsGroup.Name = "argumentsGroup";
-            argumentsGroup.Size = new Size(526, 147);
+            argumentsGroup.Size = new Size(802, 147);
             argumentsGroup.TabIndex = 2;
             argumentsGroup.TabStop = false;
             argumentsGroup.Text = "Arguments";
+            // 
+            // pathInputText
+            // 
+            pathInputText.Location = new Point(77, 91);
+            pathInputText.Name = "pathInputText";
+            pathInputText.Size = new Size(427, 39);
+            pathInputText.TabIndex = 11;
+            pathInputText.Text = "";
+            // 
+            // pathLabel
+            // 
+            pathLabel.AutoSize = true;
+            pathLabel.Location = new Point(20, 99);
+            pathLabel.Name = "pathLabel";
+            pathLabel.Size = new Size(37, 20);
+            pathLabel.TabIndex = 10;
+            pathLabel.Text = "Path";
             // 
             // qualityBox
             // 
             qualityBox.DropDownStyle = ComboBoxStyle.DropDownList;
             qualityBox.FormattingEnabled = true;
             qualityBox.Items.AddRange(new object[] { "best" });
-            qualityBox.Location = new Point(353, 99);
+            qualityBox.Location = new Point(645, 91);
             qualityBox.Name = "qualityBox";
             qualityBox.Size = new Size(151, 28);
             qualityBox.TabIndex = 9;
@@ -88,7 +109,7 @@
             // qualityLabel
             // 
             qualityLabel.AutoSize = true;
-            qualityLabel.Location = new Point(291, 102);
+            qualityLabel.Location = new Point(572, 95);
             qualityLabel.Name = "qualityLabel";
             qualityLabel.Size = new Size(56, 20);
             qualityLabel.TabIndex = 8;
@@ -99,7 +120,7 @@
             formatBox.DropDownStyle = ComboBoxStyle.DropDownList;
             formatBox.FormattingEnabled = true;
             formatBox.Items.AddRange(new object[] { "best", "3gp", "aac", "flv", "m4a", "mkv", "mp3", "mp4", "ogg", "wav", "webm" });
-            formatBox.Location = new Point(77, 99);
+            formatBox.Location = new Point(645, 34);
             formatBox.Name = "formatBox";
             formatBox.Size = new Size(151, 28);
             formatBox.TabIndex = 6;
@@ -107,7 +128,7 @@
             // formatLabel
             // 
             formatLabel.AutoSize = true;
-            formatLabel.Location = new Point(6, 102);
+            formatLabel.Location = new Point(572, 40);
             formatLabel.Name = "formatLabel";
             formatLabel.Size = new Size(67, 20);
             formatLabel.TabIndex = 7;
@@ -250,5 +271,7 @@
         private ListBox videoListBox;
         private GroupBox controlsGroup;
         private GroupBox playlistGroup;
+        private RichTextBox pathInputText;
+        private Label pathLabel;
     }
 }

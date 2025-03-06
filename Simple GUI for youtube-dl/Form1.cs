@@ -17,7 +17,7 @@ namespace Simple_GUI_for_youtube_dl
             if (videoListBox.Items.Count == 0)
             {
                 MessageBox.Show("No links have been added. Please add YouTube links.",
-                    "No Links",
+                    "No Links in the Playlist",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 return;
@@ -25,9 +25,12 @@ namespace Simple_GUI_for_youtube_dl
 
             downloadButton.Enabled = false;
 
+            // Get values from UI controls BEFORE going to the background thread
             string format = formatBox.Text;
             string quality = qualityBox.Text;
+            string path = pathInputText.Text;
 
+            // Create a copy of the items since we can't access videoListBox from background thread
             var itemsToDownload = new List<string>();
 
             foreach (var item in videoListBox.Items)
@@ -37,6 +40,7 @@ namespace Simple_GUI_for_youtube_dl
 
             try
             {
+                // Process downloads asynchronously
                 await Task.Run(() =>
                 {
                     foreach (var link in itemsToDownload)
@@ -48,7 +52,15 @@ namespace Simple_GUI_for_youtube_dl
 
                         //need to stop using just formatBox.Text since I plan on using the listbox.
                         //change these two strings to use listbox or whatever I end up using later on.
-                        
+
+                        if (format == "")
+                        {
+                            format = "best";
+                        }
+                        if (quality == "")
+                        {
+                            quality = "best";
+                        }
                         if (format != "best" || quality != "best")
                         {
                             command += "-f ";
@@ -69,18 +81,25 @@ namespace Simple_GUI_for_youtube_dl
                                 command += quality + " ";
                             }
                         }
+                        if (path != "")
+                        {
+                            command += "-o \"" + path + "\\%(title)s-%(id)s.%(ext)s" + "\" ";
+                        }
 
                         command += "\"" + link + "\"";
 
                         BeginInvoke(new Action(() =>
                         {
                             consoleText.AppendText("Downloading...\n");
+                            consoleText.AppendText($"format: {format}\n");
+                            consoleText.AppendText($"quality: {quality}\n");
                             consoleText.AppendText($"link: {link}\n");
-                            consoleText.AppendText($"{command}\n");
+                            consoleText.AppendText($"path: {path}\n");
+                            consoleText.AppendText($"command: {command}\n");
                         }));
 
 
-                        ExecutePowerShellCommand(command);
+                        ExecutePowerShellCommand(command);                        
                     }
                 });
             }
@@ -94,8 +113,9 @@ namespace Simple_GUI_for_youtube_dl
             finally
             {
                 downloadButton.Enabled = true;
-            }          
-            
+                consoleText.AppendText("\n"); //makes it easier to see console output for the next download operation
+            }
+
         }
 
         private void ExecutePowerShellCommand(string command)
@@ -109,21 +129,36 @@ namespace Simple_GUI_for_youtube_dl
                     ps.AddScript(command);
                     Collection<PSObject> results = ps.Invoke();
 
+                    var errors = new List<string>();
+                    var outputResults = new List<string>();
+
                     if (ps.Streams.Error.Count > 0)
                     {
                         foreach (var error in ps.Streams.Error)
                         {
-                            consoleText.AppendText($"ERROR: {error.ToString()}\r\n");
+                            errors.Add(error.ToString());
+                            //consoleText.AppendText($"ERROR: {error.ToString()}\r\n");
                         }
                     }
 
                     foreach (PSObject result in results)
                     {
-                        BeginInvoke(new Action(() =>
-                        {
-                            consoleText.AppendText($"{result.ToString()}\r\n");
-                        }));
+                        outputResults.Add(result.ToString());
+                        
                     }
+                    this.BeginInvoke(new Action(() =>
+                    {
+                        foreach (var error in errors)
+                        {
+                            consoleText.AppendText($"ERROR: {error}\r\n");
+                        }
+
+                        foreach (var result in outputResults)
+                        {
+                            consoleText.AppendText($"{result}\r\n");
+                        }
+                        //consoleText.AppendText($"{result.ToString()}\r\n");
+                    }));
                 }
             }
             catch (Exception ex)
@@ -137,6 +172,15 @@ namespace Simple_GUI_for_youtube_dl
 
         private void addLinkButton_Click(object sender, EventArgs e)
         {
+            //add functionality that prevents adding empty links
+            if (linkInputText.Text == "")
+            {
+                MessageBox.Show("Please put in a link into the Link textbox before pressing Add Link.",
+                    "No Links in the Link Textbox",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
+            }
             videoListBox.Items.Add(linkInputText.Text);
         }
 
