@@ -3,5 +3,6 @@ This is just a GUI for youtube-dl.exe to make it easier to download YouTube vide
 # To-Do
 - [x] Add downloading functionality
 - [x] Add the ability to choose the file type of download
+- [x] Add the option to choose video file quality
 - [ ] Add an audio download option for YouTube videos
 - [x] Add YouTube Playlist download functionality
